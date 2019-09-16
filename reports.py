@@ -17,15 +17,17 @@ class StudentExerciseReports():
     def __init__(self):
         self.db_path = "/Users/Owner/workspace/practices/joypr0912sqlcreatestudentdb/studentexercises.db"
 
-    def create_student(self, cursor, row):
-        return Student(row[1], row[2], row[3], row[5])
+    # Using lambda (anonymous Python function) to create the results--don't need create_student anymore...
+    # def create_student(self, cursor, row):
+    #     return Student(row[1], row[2], row[3], row[5])
 
     def all_students(self):
         """Retrieve all students with the cohort name"""
 
         with sqlite3.connect(self.db_path) as conn:
 
-            conn.row_factory = self.create_student
+            conn.row_factory = lambda cursor, row: Student(
+                row[1], row[2], row[3], row[5])
 
             db_cursor = conn.cursor()
 
