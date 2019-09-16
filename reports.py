@@ -11,7 +11,7 @@ class StudentExerciseReports():
     def all_students(self):
         """Retrieve all students with the cohort name"""
 
-        with sqlite3.connect("/Users/Owner/workspace/practices/joypr0912sqlcreatestudentdb/studentexercises.db") as conn:
+        with sqlite3.connect(self.db_path) as conn:
             db_cursor = conn.cursor()
 
             db_cursor.execute("""
